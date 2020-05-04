@@ -14,17 +14,8 @@ require_once('FrameWork/buildFw.php');
 $conf = new FWConfig();
 
 require_once('config.php');
-$app=new FrameWork($conf);
+global $app;
+$app =new FrameWork($conf);
 
-$dir = "./app/";
-$dh  = opendir($dir);
-$dir_list = array($dir);
-while (false !== ($filename = readdir($dh))) {
-    if($filename!="."&&$filename!=".."&&is_dir($dir.$filename))
-        array_push($dir_list, $dir.$filename."/");
-}
-foreach ($dir_list as $dir) {
-    foreach (glob($dir."*.php") as $filename)
-        require_once $filename;
-}
+require_once "app/web.php";
 $app->listen();

@@ -27,6 +27,7 @@ class FrameWork{
             }
 
         if(!$run) $this->error('Not route found',1);
+        Session::close();
 
     }
 

@@ -1,12 +1,18 @@
 <?php
 
+require_once "Controllers/Base/Controller.php";
+require_once "Controllers/Base/AuthController.php";
+require_once "Controllers/DashboardController.php";
+require_once "Controllers/LoginController.php";
+
 $app->get('/',function() use ($app){
     $app->Response('main');
-    echo "aa";
 });
 
-$app->get('/login',function() use ($app){
-    $controller = new MainController($app);
+$app->get('/login',function(){
+     new LoginController();
+});
 
-    echo $controller->run();
+$app->get('/dash',function(){
+    new DashboardController("show");
 });

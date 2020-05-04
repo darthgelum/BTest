@@ -5,14 +5,15 @@ class Controller
 {
     /** @var FrameWork */
     public $app;
-    public function __construct(FrameWork $app)
+    public function __construct($action = "run")
     {
+        global $app;
         $this->app = $app;
+        $this->$action();
     }
 
     /**
-     * Method for proceeding requests
-     * @return String
+     * Default method for proceeding requests
      * @throws Exception
      */
     public function run()

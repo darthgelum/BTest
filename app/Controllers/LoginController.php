@@ -1,7 +1,7 @@
 <?php
 
 
-class MainController extends Controller
+class LoginController extends Controller
 {
     public function run()
     {
@@ -11,6 +11,7 @@ class MainController extends Controller
         {
             $this->app->Redirect("/");
         }
-
+        Session::write('auth_id',"1");
+        $this->app->Redirect("/dash");
     }
 }
