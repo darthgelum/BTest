@@ -38,6 +38,7 @@ class FrameWork{
                 //call callback function with params in slugs
                 $run = 1;
                 call_user_func_array($func,$slugs);
+                die();
             }
 
         if(!$run) $this->error('Not route found',1);

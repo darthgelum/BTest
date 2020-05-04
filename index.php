@@ -26,6 +26,9 @@ $conf = new FWConfig();
 require_once('config.php');
 
 $app=new FrameWork($conf);
-
-require_once('app/web.php');
+foreach (glob("./app/*.php") as $filename)
+{
+    require_once $filename;
+}
+//require_once('app/web.php');
 $app->listen();
