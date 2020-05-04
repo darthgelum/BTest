@@ -106,6 +106,18 @@ class FrameWork{
         exit;
     }
 
+    /**
+     * Check if it's post request
+     * @return bool
+     */
+    public function IsPost()
+    {
+        if (!empty($_POST))
+        {
+            return true;
+        }
+        return false;
+    }
     public function Production()
     {
         return $this->config->prod_env;

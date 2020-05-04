@@ -6,7 +6,7 @@ $app->get('/',function() use ($app){
 });
 
 $app->get('/login',function() use ($app){
-    $login = $app->getRequest()->request["login"];
-    $password = $app->getRequest()->request["password"];
-    echo "Welcome {$login} with password {$password}";
+    $controller = new MainController($app);
+
+    echo $controller->run();
 });
