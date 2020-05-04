@@ -1,22 +1,5 @@
 <?php
-class FWConfig {
-    public $prod_env = false;
-    public $db_host;
-    public $db_user;
-    public $db_password;
-    public $db_name;
 
-
-    public $app_dir = __DIR__;
-}
-
-class Request
-{
-    public $query;
-    public $request;
-    public $server;
-    public $cookie;
-}
 class FrameWork{
     /** @var FWConfig **/
     protected $config;
@@ -45,17 +28,26 @@ class FrameWork{
     }
 
     /**
-     * @return mysqli
+     * @return PDO
      * @throws Exception
      */
     public function getDB(){
-        $this->db = $this->db ? $this->db : new mysqli($this->config->db_host, $this->config->db_user, $this->config->db_password, $this->config->db_name);
-        if ($this->db->connect_errno) {
-            $this->error("Error connecting to database: ".$this->config->db_name."<br/> Info:". $this->db->connect_error);
-        }
-        return $this->db;
+        return $this->db?$this->db:$this->buildPDO();
     }
-
+    private function buildPDO()
+    {
+        if($this->db)
+        {
+            return $this->db;
+        }
+        $dsn = "mysql:host={$this->config->db_host};dbname={$this->config->db_name};charset=UTF-8";
+        $opt = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+        return new PDO($dsn, $this->config->db_user, $this->config->db_password, $opt);
+    }
     private function buildRequest(){
         $this->request = new Request();
         $this->request->query = $_GET;
@@ -145,6 +137,8 @@ class FrameWork{
         exit;
     }
 
+
+
     /**  Match 2 uris
      * @param $uri_segments
      * @param $route_segments
@@ -195,36 +189,6 @@ class FrameWork{
             $frw_msg = $frw_msg." <h2>Trace:</h2>";
             echo $frw_msg;
             throw new Exception();
-        }
-    }
-}
-
-class View
-{
-    protected $data;
-    /** @var FrameWork */
-    protected $framework;
-    protected $src;
-
-    public function __construct($src,array $vars,$framework = null){
-        $this->data = $vars;
-        $this->framework = $framework;
-        $this->src = $src;
-    }
-
-    /**
-     * Renders a view
-     * @throws Exception if View not found
-     */
-    public  function load(){
-        $app = $this->framework;
-        $data = $this->data;
-        $var = function ($name) use ($data) {return $data[$name];};
-        if(file_exists($this->src))
-            include_once($this->src); //scoped to this class
-        else{
-            if($app && !$app->Production())
-                throw new Exception(" View filename: {$this->src} NOT found");
         }
     }
 }
