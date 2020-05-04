@@ -10,12 +10,17 @@ class FWConfig {
     public $app_dir = __DIR__;
 }
 
-
-
+class Request
+{
+    public $query;
+    public $request;
+    public $server;
+    public $cookie;
+}
 class FrameWork{
     /** @var FWConfig **/
     protected $config;
-
+    /** @var Request */
     protected $request;
     protected $db;
     protected $routes = array();
@@ -51,7 +56,7 @@ class FrameWork{
     }
 
     private function buildRequest(){
-        $this->request = new stdClass();
+        $this->request = new Request();
         $this->request->query = $_GET;
         $this->request->request = $_POST;
         $this->request->server = $_SERVER;
