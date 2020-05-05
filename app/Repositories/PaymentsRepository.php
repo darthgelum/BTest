@@ -17,7 +17,6 @@ class PaymentsRepository extends ORM
             //$this->db->exec('LOCK TABLES balances WRITE, payments WRITE;');
             $this->db->exec("INSERT INTO payments (user_id,summ) VALUES ({$userId},{$sum})");
             $this->db->exec("UPDATE balances SET money = money + {$sum} WHERE user_id = {$userId}");
-            sleep(10);
             $this->db->commit();
             $this->db->exec('UNLOCK TABLES');
         }
