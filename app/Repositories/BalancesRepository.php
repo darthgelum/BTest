@@ -1,5 +1,9 @@
 <?php
-require_once "app/Models/Balance.php";
+
+namespace App\Repositories;
+
+use App\Models\Balance;
+use App\Repositories\Base\ORM;
 
 class BalancesRepository extends ORM
 {

@@ -1,6 +1,8 @@
 <?php
-require_once "app/Models/User.php";
-require_once "BalancesRepository.php";
+namespace App\Repositories;
+use App\Models\User;
+use App\Repositories\Base\ORM;
+
 class UsersRepository extends ORM
 {
     protected $table = "users";

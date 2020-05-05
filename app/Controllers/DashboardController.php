@@ -1,6 +1,12 @@
 <?php
 
-require_once "app/Repositories/PaymentsRepository.php";
+namespace App\Controllers;
+
+use App\Controllers\Base\AuthController;
+use App\Repositories\PaymentsRepository;
+use App\Repositories\UsersRepository;
+
+
 class DashboardController extends AuthController
 {
     public function show()

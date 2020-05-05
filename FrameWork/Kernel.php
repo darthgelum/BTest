@@ -1,10 +1,16 @@
 <?php
+namespace FrameWork;
+use Exception;
+use PDO;
+use stdClass;
 
-class FrameWork{
+class Kernel
+{
     /** @var FWConfig **/
     protected $config;
     /** @var Request */
     protected $request;
+    /** @var PDO */
     protected $db;
     protected $routes = array();
 
@@ -35,6 +41,10 @@ class FrameWork{
     public function getDB(){
         return $this->db?$this->db:$this->buildPDO();
     }
+
+    /**
+     * @return PDO
+     */
     private function buildPDO()
     {
         if($this->db)

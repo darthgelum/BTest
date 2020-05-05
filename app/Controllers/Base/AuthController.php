@@ -1,4 +1,8 @@
 <?php
+namespace App\Controllers\Base;
+use App\Models\User;
+use App\Repositories\UsersRepository;
+use FrameWork\Session;
 
 abstract class AuthController extends Controller
 {

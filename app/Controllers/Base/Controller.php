@@ -1,9 +1,11 @@
 <?php
-require_once "app/Repositories/Base/ORM.php";
-require_once "app/Models/Base/Model.php";
+namespace App\Controllers\Base;
+use Exception;
+use FrameWork\Kernel;
+
 abstract class Controller
 {
-    /** @var FrameWork */
+    /** @var Kernel */
     public $app;
     public function __construct($action = "run")
     {

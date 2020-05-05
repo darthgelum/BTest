@@ -1,9 +1,11 @@
 <?php
+namespace FrameWork;
+use Exception;
 
 class View
 {
     protected $data;
-    /** @var FrameWork */
+    /** @var Kernel */
     protected $framework;
     protected $src;
 

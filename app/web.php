@@ -1,9 +1,8 @@
 <?php
 
-require_once "Controllers/Base/Controller.php";
-require_once "Controllers/Base/AuthController.php";
-require_once "Controllers/DashboardController.php";
-require_once "Controllers/LoginController.php";
+use App\Controllers\Base\AuthController;
+use App\Controllers\DashboardController;
+use App\Controllers\LoginController;
 
 $app->get('/',function() use ($app){
     if(AuthController::getSessionId())

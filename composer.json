@@ -1,0 +1,10 @@
+{
+  "name": "darthgelum/bftest",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "FrameWork\\": "FrameWork/",
+      "App\\": "app/"
+    }
+  }
+}

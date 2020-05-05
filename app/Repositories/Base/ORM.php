@@ -1,4 +1,7 @@
 <?php
+namespace App\Repositories\Base;
+use Exception;
+use FrameWork\Kernel;
 
 abstract class ORM
 {

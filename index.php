@@ -1,4 +1,8 @@
 <?php
+
+use FrameWork\FWConfig;
+use FrameWork\Kernel;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -9,13 +13,12 @@ $uri = urldecode(
 if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
-require_once('FrameWork/buildFw.php');
-
+require "vendor/autoload.php";
 $conf = new FWConfig();
 
 require_once('config.php');
 global $app;
-$app =new FrameWork($conf);
+$app =new Kernel($conf);
 
 require_once "app/web.php";
 $app->listen();

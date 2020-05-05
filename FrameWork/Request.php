@@ -1,5 +1,5 @@
 <?php
-
+namespace FrameWork;
 class Request
 {
     public $query;

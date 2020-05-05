@@ -1,5 +1,9 @@
 <?php
-require_once "app/Models/Payment.php";
+namespace App\Repositories;
+
+use App\Models\Payment;
+use App\Repositories\Base\ORM;
+use Exception;
 
 class PaymentsRepository extends ORM
 {

@@ -1,4 +1,5 @@
 <?php
+namespace FrameWork;
 
 class FWConfig {
     public $prod_env = false;
