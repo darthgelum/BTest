@@ -1,7 +1,7 @@
 <?php
 
 
-class ORM
+abstract class ORM
 {
     protected $table;
     protected $db;
@@ -21,14 +21,15 @@ class ORM
         $objects = [];
         while ($row = $stmt->fetch())
         {
-            $class =  get_class($this);
-            $obj = new $class();
+            $model = $this->getModel();
             foreach ($row as $key=>$val)
             {
-                $obj->$key = $val;
+                $model->$key = $val;
             }
-            $objects[] = $obj;
+            $objects[] = $model;
         }
         return $objects;
     }
+
+    abstract protected function getModel();
 }

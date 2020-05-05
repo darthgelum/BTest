@@ -1,7 +1,7 @@
 <?php
-require_once "app/Models/Base/ORM.php";
-
-class Controller
+require_once "app/Repositories/Base/ORM.php";
+require_once "app/Models/Base/Model.php";
+abstract class Controller
 {
     /** @var FrameWork */
     public $app;

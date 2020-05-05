@@ -1,6 +1,6 @@
 <?php
 
-class AuthController extends Controller
+abstract class AuthController extends Controller
 {
     public $user;
     public function __construct($action = "run")
@@ -8,7 +8,7 @@ class AuthController extends Controller
         global $app;
         $this->app = $app;
         if($this->getSessionId()) {
-            $this->user = (new User())->getById($this->getSessionId());
+            $this->authenticate();
             parent::__construct($action);
         }
         else
@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function authenticate()
     {
-
+        $this->user = (new UsersRepository())->getById($this->getSessionId());
     }
 
     public static function set(User $user)
@@ -29,7 +29,6 @@ class AuthController extends Controller
 
     public static function getSessionId()
     {
-        $auth_id = Session::read("auth_id");
-        return $auth_id;
+        return Session::read("auth_id");
     }
 }

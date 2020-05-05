@@ -1,5 +1,5 @@
 <?php
-require_once "app/Models/User.php";
+require_once "app/Repositories/UsersRepository.php";
 
 class LoginController extends Controller
 {
@@ -12,7 +12,7 @@ class LoginController extends Controller
         {
             $this->app->Redirect("/");
         }
-        $user = (new User())->getByLogin($login);
+        $user = (new UsersRepository())->getByLogin($login);
         if($user->pass_hash === md5($password)) {
             AuthController::set($user);
             $this->app->Redirect("/dash");
