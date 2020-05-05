@@ -14,7 +14,7 @@ class PaymentsRepository extends ORM
         try {
 
             $this->db->beginTransaction();
-            //$this->db->exec('LOCK TABLES balances WRITE, payments WRITE;');
+            $this->db->exec('LOCK TABLES balances WRITE, payments WRITE;');
             $this->db->exec("INSERT INTO payments (user_id,summ) VALUES ({$userId},{$sum})");
             $this->db->exec("UPDATE balances SET money = money + {$sum} WHERE user_id = {$userId}");
             $this->db->commit();
