@@ -5,6 +5,11 @@ class DashboardController extends AuthController
 {
     public function show()
     {
-        $this->app->Response('user',['name'=>"A",'surname'=>"Bb",'balance'=>100]);
+        $params = [
+            'name'=>$this->user->name,
+            'surname'=>$this->user->surname,
+            'balance'=>100
+        ];
+        $this->app->Response('user',$params);
     }
 }

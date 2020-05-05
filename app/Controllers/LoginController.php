@@ -1,5 +1,5 @@
 <?php
-
+require_once "app/Models/User.php";
 
 class LoginController extends Controller
 {
@@ -7,11 +7,15 @@ class LoginController extends Controller
     {
         $login = $this->app->getRequest()->request["login"];
         $password = $this->app->getRequest()->request["password"];
+
         if(!$login || !$password || !$this->app->IsPost())
         {
             $this->app->Redirect("/");
         }
-        Session::write('auth_id',"1");
-        $this->app->Redirect("/dash");
+        $user = (new User())->getByLogin($login);
+        if($user->pass_hash === md5($password)) {
+            AuthController::set($user);
+            $this->app->Redirect("/dash");
+        }
     }
 }

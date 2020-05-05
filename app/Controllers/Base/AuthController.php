@@ -5,7 +5,10 @@ class AuthController extends Controller
     public $user;
     public function __construct($action = "run")
     {
-        if(Session::read("auth_id")) {
+        global $app;
+        $this->app = $app;
+        if($this->getSessionId()) {
+            $this->user = (new User())->getById($this->getSessionId());
             parent::__construct($action);
         }
         else
@@ -17,5 +20,16 @@ class AuthController extends Controller
     public function authenticate()
     {
 
+    }
+
+    public static function set(User $user)
+    {
+        Session::write('auth_id',$user->id);
+    }
+
+    public static function getSessionId()
+    {
+        $auth_id = Session::read("auth_id");
+        return $auth_id;
     }
 }

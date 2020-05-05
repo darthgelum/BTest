@@ -6,6 +6,10 @@ require_once "Controllers/DashboardController.php";
 require_once "Controllers/LoginController.php";
 
 $app->get('/',function() use ($app){
+    if(AuthController::getSessionId())
+    {
+        $app->Redirect("/dash");
+    }
     $app->Response('main');
 });
 
