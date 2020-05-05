@@ -151,13 +151,11 @@ class Session
     /**
      * Initializes a new secure session or resumes an existing session.
      *
-     * @return boolean Returns true upon success and false upon failure.
-     * @throws Exception Sessions are disabled.
+     * @return void
      */
     private static function _init()
     {
-        if ( '' === session_id() )
-        {
+        if ( '' === session_id() ) {
             $secure = false;
             $httponly = false;
             $params = session_get_cookie_params();
@@ -166,10 +164,8 @@ class Session
                 $secure, $httponly
             );
 
-            return session_start();
+            session_start();
         }
-
-        return session_regenerate_id(true);
     }
 
 }

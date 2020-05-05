@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Controllers\Base\AuthController;
 use App\Repositories\{PaymentsRepository,UsersRepository};
 

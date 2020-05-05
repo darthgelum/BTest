@@ -26,9 +26,10 @@ class Kernel
             if($func = $this->processUri($route,$slugs)){
                 //call callback function with params in slugs
                 $run = 1;
-                call_user_func_array($func,$slugs);
-                Session::close();
-                die();
+                    Session::close();
+                    call_user_func_array($func, $slugs);
+
+               break;
             }
 
         if(!$run) $this->error('Not route found',1);

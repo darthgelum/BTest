@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Controllers\Base\AuthController;
-use App\Controllers\Base\Controller;
+use App\Controllers\Base\{Controller,AuthController};
 use App\Repositories\UsersRepository;
 
 class LoginController extends Controller
