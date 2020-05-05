@@ -20,3 +20,7 @@ $app->get('/login',function(){
 $app->get('/dash',function(){
     new DashboardController("show");
 });
+
+$app->get('/drop_money',function(){
+    new DashboardController("drop");
+});

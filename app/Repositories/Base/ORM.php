@@ -1,10 +1,10 @@
 <?php
 
-
 abstract class ORM
 {
     protected $table;
     protected $db;
+
     public function __construct()
     {
         if(!$this->table)
@@ -17,9 +17,12 @@ abstract class ORM
 
     public function selectFullRowsAsObjects($conditions = "")
     {
-        $stmt = $this->db->query("SELECT * FROM {$this->table} {$conditions}");
+        $sql = "SELECT *  FROM {$this->table} {$conditions};";
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
         $objects = [];
-        while ($row = $stmt->fetch())
+        while ($row = $query->fetch())
         {
             $model = $this->getModel();
             foreach ($row as $key=>$val)
