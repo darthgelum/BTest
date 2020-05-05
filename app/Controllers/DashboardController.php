@@ -3,8 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Base\AuthController;
-use App\Repositories\PaymentsRepository;
-use App\Repositories\UsersRepository;
+use App\Repositories\{PaymentsRepository,UsersRepository};
 
 
 class DashboardController extends AuthController
@@ -23,6 +22,11 @@ class DashboardController extends AuthController
     public function drop()
     {
         $sum = $this->app->getRequest()->request["sum"];
+        $balance = (new UsersRepository())->getBalanceByUserId($this->user->id)->money;
+        if($sum>$balance)
+        {
+            $this->app->Redirect("/dash");
+        }
         if($sum>0)
         {
             $sum=-$sum;
