@@ -1,6 +1,6 @@
 <?php
-
 require_once "app/Models/User.php";
+require_once "BalancesRepository.php";
 class UsersRepository extends ORM
 {
     protected $table = "users";
@@ -22,6 +22,10 @@ class UsersRepository extends ORM
         return $this->selectFullRowsAsObjects("WHERE id = '{$id}'")[0];
     }
 
+    public function getBalanceByUserId($id)
+    {
+        return (new BalancesRepository())->getByUserId($id);
+    }
     /**
      * @return User
      */

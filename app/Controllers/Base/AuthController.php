@@ -2,6 +2,7 @@
 
 abstract class AuthController extends Controller
 {
+    /** @var User */
     public $user;
     public function __construct($action = "run")
     {
