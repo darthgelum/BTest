@@ -9,7 +9,7 @@ class PaymentsRepository extends ORM
         return new Payment();
     }
 
-    public function insertPayment($userId=1, $sum=-100)
+    public function insertPayment($userId, $sum)
     {
         try {
 
